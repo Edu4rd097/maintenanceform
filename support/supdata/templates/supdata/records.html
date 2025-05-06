@@ -1,0 +1,52 @@
+{% extends 'design/index.html' %}
+
+
+{% load static %}
+
+{% block content %}
+
+
+<table class="styled-table">
+    <thead>
+      <tr>
+        <th>Hostname</th>
+        <th>Usuario</th>
+        <th>Patio</th>        
+        <th>Tipo de Equipo</th>
+        <th>Marca</th>
+        <th>Modelo</th>
+        <th>IP Address</th>
+        <th>Procesador</th>
+        <th>OS</th>
+        <th>RAM</th>
+        <th>HDD</th>
+        
+      </tr>
+    </thead>
+    <tbody>
+    {% for a in datos %}
+      <tr>
+        <td>
+            <a href="{% url 'reports' a.id %}">
+                {{a.hostname}}
+            </a>
+        </td>
+        <td>{{a.usuario}}</td>
+        <td>{{a.planta}}</td>
+        <td>{{a.tipodeequipo}}</td>
+        <td>{{a.marca}}</td>
+        <td>{{a.modelo}}</td>
+        <td>{{a.ipaddress}}</td>
+        <td>{{a.procesador}}</td>
+        <td>{{a.os}}</td>
+        <td>{{a.ram}}</td>
+        <td>{{a.hdd}}</td>
+        
+      </tr>
+      {% endfor %}  
+    </tbody>
+  </table>
+  
+
+
+{% endblock %}

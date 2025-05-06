@@ -1,0 +1,41 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registro mantenimiento</title>
+  <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+</head>
+<body>
+  <script src="{% static 'assets/js/script.js' %}"></script>
+    <div class="app-container">
+      
+      <nav class="navbar">
+        <ul class="navbar-links">
+          <li><img src="" alt=""></li>
+          
+        </ul>
+        <button class="btn logout">Cerrar sesión</button>
+      </nav>
+      
+{% block content %}
+      
+  
+      <div class="content">
+        <div class="btn-container">
+            <a href="{% url 'form' %}"><button class="btn add"  > Agregar un registro</button></a> 
+            <br>
+            <a href="{% url 'viewtable' %}"><button class="btn view">Visualizar registro</button></a>
+        </div>
+      </div>
+   
+
+
+{% endblock %}
+
+      
+    </div>
+  </body>
+</html>

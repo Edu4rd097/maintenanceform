@@ -1,0 +1,229 @@
+{% extends 'design/index.html' %}
+
+
+{% load static %}
+
+{% block content %}
+
+
+<br>
+
+<div class="container">
+   
+    
+
+    <div class="report-header">
+        <p style="text-align: right ;"><strong>Generado en:</strong> <span id="fecha-generada"></span></p>
+        <hr>
+        <br>
+        <h2>Detalles del mantenimiento</h2>
+        <br>
+        <p>El presente informe proporciona una visión general del mantenimiento realizado durante el año correspondiente. Cada reporte incluye información detallada sobre las tareas efectuadas, la ubicación del servicio y la firma del usuario, mediante la cual se confirma su visto bueno al momento de la entrega del equipo.</p>
+    </div>
+    
+
+    <table class="event-table">
+        <thead>
+       
+            <tr>
+                <th>Datos del usuario</th>
+                <th>Datos del Equipo</th>
+                
+                
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="severity-low">
+                <td>
+                    <p><strong>Nombre del usuario:</strong> {{report.usuario}}</p>
+                    <p><strong>Hostname del equipo:</strong> {{report.hostname}}</p>
+                    <p><strong>Patio:</strong> {{report.planta}}</p>
+                    <p><strong>Departamento:</strong> {{report.departamento}}</p>
+                    <p><strong>Fecha de mantenimiento:</strong> {{report.fecha}}</p>
+
+                </td>
+                <td>
+                    <p><strong>Tipo de equipo:</strong> {{report.tipodeequipo}}</p>
+                    <p><strong>Marca:</strong> {{report.marca}}</p>
+                    <p><strong>Modelo:</strong> {{report.modelo}}</p>
+                    <p><strong>Número de serie:</strong> {{report.serialnumber}}</p>
+                    <p><strong>Número de activo fijo:</strong> {{report.activofijo}}</p>
+                    <p><strong>Procesador:</strong> {{report.procesador}}</p>
+                    <p><strong>Disco duro:</strong> {{report.hdd}}</p>
+                    <p><strong>Memoria RAM:</strong> {{report.ram}}</p>
+                    <p><strong>Sistema operativo:</strong> {{report.os}}</p>
+                    <p><strong>Dirección IP:</strong> {{report.ipaddress}}</p>
+                </td>
+                
+               
+            </tr>
+          
+        </tbody>
+    </table>
+    <br>
+    
+
+    <table class="event-table">
+        <thead>
+            
+            <tr>
+                <h3>Servicio Técnico General del Equipo</h3>
+                <th>Software</th>
+                <th>Hardware</th>
+                
+                
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="severity-low">
+                <td>
+                    <div class="agentes-revision">
+                        
+                        <p><strong>Temperatura del CPU:</strong> {{report.tempcpu}}</p><br>
+                        {% if report.epc %} ✅ El equipo de computo tiene Manage Engine  {% else %} ❌  El equipo de computo no tiene Manage Engine {% endif %} <br>
+                        {% if report.tenable %} ✅ El equipo de computo tiene Nessus Agent {% else %} ❌ El equipo de computo no tiene Nessus Agent {% endif %} <br>
+                        {% if report.encriptacionhdd %} ✅ El equipo de computo esta encriptado {% else %} ❌ El equipo de computo no esta encriptado{% endif %} <br>
+                        {% if report.borrartemporales %} ✅ Se eliminaron los archivos temporales {% else %} ❌ No se eliminaron los archivos temporales{% endif %} <br>
+                        {% if report.updates %} ✅ El equipo de computo esta actualizado {% else %} ❌ El equipo de computo no esta actualizado{% endif %} <br>
+                      </div>
+
+                </td>
+                <td>
+                    <div class="agentes-revision2">
+                        {% if report.tempcpu %} ✅ Limpieza interna del equipo  {% else %} ❌ Limpieza interna del equipo {% endif %} 
+                        {% if report.limpinterna %} ✅ Limpieza interna del equipo  {% else %} ❌ Limpieza interna del equipo {% endif %} <br>
+                        {% if report.limpexterna %} ✅ Limpieza externa del equipo  {% else %} ❌ Limpieza externa del equipo {% endif %} <br>
+                        {% if report.limpteclado %} ✅ Limpieza de teclado {% else %} ❌ Limpieza de teclado {% endif %} <br>
+                        {% if report.limpram %} ✅ Limpieza de memoria RAM {% else %} ❌ impieza de memoria{% endif %} <br>
+                        {% if report.limpventilador %} ✅ Limpieza de ventiladores {% else %} ❌ Limpieza de ventiladores{% endif %} <br>
+                        {% if report.limppasta %} ✅ Limpieza de pasta térmica {% else %} ❌ Limpieza de pasta térmica{% endif %} <br>
+                        {% if report.aplicacionpasta %} ✅ Aplicación de pasta térmica {% else %} ❌ Aplicación de pasta térmica{% endif %} <br>
+                        {% if report.limpiezadisipador %} ✅ Limpieza de disipador {% else %} ❌ Limpieza de disipador{% endif %} <br>
+                    </div>
+                    
+                </td>
+                
+               
+            </tr>
+          
+        </tbody>
+    </table>
+
+    <table class="event-table">
+        <thead>
+            
+            <tr>
+                <h3>Evidencias del Proceso de Mantenimiento</h3>
+                <th>Imagen antes del mantenimiento</th>
+                <th>Imagen después del mantenimiento</th>
+                
+                
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="severity-low">
+                <td>
+                    <div class="img-table">
+                        <img src="{{ report.imgantes.url }}" alt="Imagen de agente" width="350px" height="300px">
+                    </div> 
+
+                </td>
+                <td>
+                    <div class="img-table">
+                        <img src="{{ report.imgdespues.url }}" alt="Imagen de agente" width="350px" height="300px">
+                    </div> 
+                    
+                </td>
+                
+               
+            </tr>
+          
+        </tbody>
+    </table>
+
+    <table class="event-table">
+        <thead>
+            
+            <tr>
+                
+                <th>Agentes instalados</th>
+                <th>Temperatura del CPU</th>
+                
+                
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="severity-low">
+                <td>
+                    <div class="img-table">
+                        <img src="{{ report.imgagent.url }}" alt="Imagen de agente" width="350px" height="300px">
+                    </div> 
+
+                </td>
+                <td>
+                    <div class="img-table">
+                        <img src="{{ report.imgtemp.url }}" alt="Imagen de agente" width="350px" height="300px">
+                    </div> 
+                    
+                </td>
+                
+               
+            </tr>
+          
+        </tbody>
+    </table>
+
+    <div class="description">
+        <h3> Datos del Técnico Responsable del Mantenimiento </h3>
+        <br>
+        <p><strong>Nombre completo del técnico:</strong> {{report.nombretech}}</p>
+        <p><strong>Nombre de la empresa:</strong> {{report.empresa}}</p>
+       
+       
+        
+        <br>
+        <table class="event-table" style=" background-color: black; color: white; text-align: center;">
+            <thead>
+                <tr>
+                    <th>Comentarios</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="severity-low">
+                    <td style="color: black; background-color: white;"> {{report.comentarios}} </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <table class="event-table" style=" background-color: black; color: white; text-align: center;">
+            <thead>
+                <tr>
+                    <th>Firma del usuario</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="severity-low">
+                    <td style="background-color: white;">
+                        <div class="img-table">
+                            <img src="{{ report.firma.url }}" alt="Imagen de agente"  width="350px" height="150px">
+                        </div>    
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        
+        
+    </div>
+   
+    
+   
+
+    <script>
+        const fecha = new Date();
+        const opciones = { year: 'numeric', month: 'long', day: 'numeric' };
+        document.getElementById("fecha-generada").textContent = fecha.toLocaleDateString('es-ES', opciones);
+      </script>
+    
+
+
+{% endblock %}

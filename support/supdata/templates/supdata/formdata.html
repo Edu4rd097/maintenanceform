@@ -1,0 +1,299 @@
+{% extends 'design/index.html' %}
+
+
+{% load static %}
+
+{% block content %}
+
+<form method="post" enctype="multipart/form-data" id="firma-form">
+    
+
+    <fieldset>
+        <legend>REGISTRO MANTENIMIENTO EQUIPOS DE COMPUTO</legend>
+        <legend>Favor de capturar los datos de manera correcta</legend>        
+    </fieldset>
+
+    <fieldset class="fieldsetall">
+        <legend>Datos del usuario</legend>
+        {% csrf_token %}
+        <hr>
+            
+        <div class="contain_label_and_input">
+            <label for="{{ form_data.fecha.id_for_label }}">Fecha</label>
+            {{ form_data.fecha }}
+        </div>
+        <div class="contain_label_and_input">
+            <label for="{{ form_data.usuario.id_for_label }}">Usuario</label>
+            {{ form_data.usuario }}
+        </div>
+        <div class="contain_label_and_input">
+            <label for="{{ form_data.planta.id_for_label }}">Planta</label>
+            <select name="{{ form_data.planta.name }}" id="{{ form_data.planta.id_for_label }}">
+                <option value="">Seleccione una planta</option>
+                <option value="Patio Colombia" {% if form_data.planta.value == "Patio Colombia" %}selected{% endif %}>Patio Colombia</option>
+                <option value="Patio Matriz" {% if form_data.planta.value == "Patio Matriz" %}selected{% endif %}>Patio Matriz</option>
+                <option value="Patio Monterrey" {% if form_data.planta.value == "Patio Monterrey" %}selected{% endif %}>Patio Monterrey</option>
+                <option value="Patio 4" {% if form_data.planta.value == "Patio 4" %}selected{% endif %}>Patio 4</option>
+                <option value="Patio Logistica" {% if form_data.planta.value == "Patio Logistica" %}selected{% endif %}>Patio Logistica</option>
+                <option value="Torre BH" {% if form_data.planta.value == "Torre BH" %}selected{% endif %}>Torre BH</option>
+                <option value="Bodega SDI" {% if form_data.planta.value == "Bodega SDI" %}selected{% endif %}>Bodega SDI</option>
+                <option value="Patio Ramos Arizpe" {% if form_data.planta.value == "Patio Ramos Arizpe" %}selected{% endif %}>Patio Ramos Arizpe</option>
+                <option value="Patio Monclova" {% if form_data.planta.value == "Patio Monclova" %}selected{% endif %}>Patio Monclova</option>
+                <option value="Patio Reynosa" {% if form_data.planta.value == "Patio Reynosa" %}selected{% endif %}>Patio Reynosa</option>
+                <option value="Patio San Luis Potosi" {% if form_data.planta.value == "Patio San Luis Potosi" %}selected{% endif %}>Patio San Luis Potosi</option>
+                <option value="Patio Queretaro" {% if form_data.planta.value == "Patio Queretaro" %}selected{% endif %}>Patio Queretaro</option>
+                <option value="Patio Silao" {% if form_data.planta.value == "Patio Silao" %}selected{% endif %}>Patio Silao</option>
+            </select>
+        </div>
+        <div class="contain_label_and_input">
+            <label for="{{ form_data.hostname.id_for_label }}">Hostname</label>
+            {{ form_data.hostname }}
+        </div>
+        <div class="contain_label_and_input">
+            <label for="{{ form_data.departamento.id_for_label }}">Departamento</label>
+            {{ form_data.departamento }}
+        </div>
+        <legend>Datos del equipo</legend>
+        <hr>
+        <div class="contain_label_and_input">
+            <label for="{{ form_data.serialnumber.id_for_label }}">Serial Number</label>
+            {{ form_data.serialnumber }}
+        </div>
+        <div class="contain_label_and_input">
+            <label for="{{ form_data.activofijo.id_for_label }}">Activo Fijo</label>
+            {{ form_data.activofijo }}
+        </div>
+        <div class="contain_label_and_input">
+            
+            <label for="{{ form_data.tipodeequipo.id_for_label }}">Tipo de Equipo</label>
+            <select name="{{ form_data.tipodeequipo.name }}" id="{{ form_data.tipodeequipo.id_for_label }}">
+                <option value="">Seleccione el tipo de equipo</option>
+                <option value="Laptop" {% if form_data.tipodeequipo.value == "Laptop" %}selected{% endif %}>Laptop</option>
+                <option value="All in One" {% if form_data.tipodeequipo.value == "All in One" %}selected{% endif %}>All in One</option>
+                <option value="Equipo de escritorio" {% if form_data.tipodeequipo.value == "Equipo de escritorio" %}selected{% endif %}>Equipo de escritorio</option>
+                <option value="Otro" {% if form_data.tipodeequipo.value == "Otro" %}selected{% endif %}>Otro</option>
+                
+            </select>
+            
+        </div>
+        <div class="contain_label_and_input">
+            <label for="{{ form_data.marca.id_for_label }}">Marca</label>
+            {{ form_data.marca }}
+        </div>
+        <div class="contain_label_and_input">
+            <label for="{{ form_data.modelo.id_for_label }}">Modelo</label>
+            {{ form_data.modelo }}
+        </div>
+        <div class="contain_label_and_input">
+            <label for="{{ form_data.ipaddress.id_for_label }}">Dirección IP</label>
+            {{ form_data.ipaddress }}
+        </div>
+        <div class="contain_label_and_input">
+            <label for="{{ form_data.procesador.id_for_label }}">Procesador</label>
+            {{ form_data.procesador }}
+        </div>
+        <div class="contain_label_and_input">
+            <label for="{{ form_data.os.id_for_label }}">Sistema Operativo</label>
+            {{ form_data.os }}
+        </div>
+        <div class="contain_label_and_input">
+            <label for="{{ form_data.ram.id_for_label }}">RAM</label>
+            {{ form_data.ram }}
+        </div>
+        <div class="contain_label_and_input">
+            <label for="{{ form_data.hdd.id_for_label }}">HDD</label>
+            {{ form_data.hdd }}
+        </div>
+        <legend>Mantenimiento de software</legend>
+        <hr>
+        <div class="contain_label_and_input">
+            <label for="{{ form_data.epc.id_for_label }}">EPC</label>
+            {{ form_data.epc }}
+        </div>
+        <div class="contain_label_and_input">
+            <label for="{{ form_data.tenable.id_for_label }}">Tenable</label>
+            {{ form_data.tenable }}
+        </div>
+        <div class="contain_label_and_input">
+            <label for="{{ form_data.sophos.id_for_label }}">Sophos</label>
+            {{ form_data.sophos }}
+        </div>
+        <div class="contain_label_and_input">
+            <label for="{{ form_data.borrartemporales.id_for_label }}">Borrar Temporales</label>
+            {{ form_data.borrartemporales }}
+        </div>
+        <div class="contain_label_and_input">
+            <label for="{{ form_data.encriptacionhdd.id_for_label }}">Encriptación HDD</label>
+            {{ form_data.encriptacionhdd }}
+        </div>
+        <div class="contain_label_and_input">
+            <label for="{{ form_data.updates.id_for_label }}">Updates</label>
+            {{ form_data.updates }}
+        </div>
+
+        <div class="contain_label_and_input">
+            <label for="{{ form_data.imgagent.id_for_label }}">Imagen Agente</label>
+            {{ form_data.imgagent }}
+        </div>
+
+
+        <legend>Mantenimiento de hardware</legend>
+        <hr>
+        <div class="contain_label_and_input">
+            <label for="{{ form_data.imgantes.id_for_label }}">Imagen Antes</label>
+            {{ form_data.imgantes }}
+        </div>
+        <div class="contain_label_and_input">
+            <label for="{{ form_data.imgdespues.id_for_label }}">Imagen Después</label>
+            {{ form_data.imgdespues }}
+        </div>
+        <div class="contain_label_and_input">
+            <label for="{{ form_data.tempcpu.id_for_label }}">Temperatura CPU</label>
+            {{ form_data.tempcpu }}
+        </div>
+        <div class="contain_label_and_input">
+            <label for="{{ form_data.imgtemp.id_for_label }}">Imagen Temperatura</label>
+            {{ form_data.imgtemp }}
+        </div>
+        
+        <div class="contain_label_and_input">
+            <label for="{{ form_data.limpinterna.id_for_label }}">Limpieza Interna</label>
+            {{ form_data.limpinterna }}
+        </div>
+        <div class="contain_label_and_input">
+            <label for="{{ form_data.limpexterna.id_for_label }}">Limpieza Externa</label>
+            {{ form_data.limpexterna }}
+        </div>
+        <div class="contain_label_and_input">
+            <label for="{{ form_data.limpram.id_for_label }}">Limpieza RAM</label>
+            {{ form_data.limpram }}
+        </div>
+        <div class="contain_label_and_input">
+            <label for="{{ form_data.limpteclado.id_for_label }}">Limpieza Teclado</label>
+            {{ form_data.limpteclado }}
+        </div>
+        <div class="contain_label_and_input">
+            <label for="{{ form_data.limpventilador.id_for_label }}">Limpieza Ventilador</label>
+            {{ form_data.limpventilador }}
+        </div>
+        <div class="contain_label_and_input">
+            <label for="{{ form_data.limppasta.id_for_label }}">Limpieza Pasta</label>
+            {{ form_data.limppasta }}
+        </div>
+        <div class="contain_label_and_input">
+            <label for="{{ form_data.aplicacionpasta.id_for_label }}">Aplicación de Pasta</label>
+            {{ form_data.aplicacionpasta }}
+        </div>
+        <div class="contain_label_and_input">
+            <label for="{{ form_data.limpiezadisipador.id_for_label }}">Limpieza Disipador</label>
+            {{ form_data.limpiezadisipador }}
+        </div>
+        <legend>Validación del usuario</legend>
+        <hr>
+        <div class="contain_label_and_input">
+            <label for="{{ form_data.nombretech.id_for_label }}">Nombre del Técnico</label>
+            {{ form_data.nombretech }}
+        </div>
+        <div class="contain_label_and_input">
+            <label for="{{ form_data.empresa.id_for_label }}">Empresa</label>
+            {{ form_data.empresa }}
+        </div>
+        <div class="contain_label_and_input">
+            <label for="{{ form_data.comentarios.id_for_label }}">Comentarios del usuario/técnico</label>
+            {{ form_data.comentarios }}
+        </div>
+   
+        
+    </fieldset>    
+    <fieldset>
+        <legend>Firma del usuario</legend>
+
+        <canvas id="signature-pad" class="canvas-firma"></canvas><br>
+
+        <button type="button" onclick="clearCanvas()">Borrar firma</button>
+        
+        
+        <input type="hidden" name="firma_base64" id="firma-base64">
+    </fieldset>
+
+    <br>
+    <button type="button" onclick="guardarFirma()">Guardar todo</button>
+</form>
+
+<script>
+   const canvas = document.getElementById('signature-pad');
+    const ctx = canvas.getContext('2d');
+    let drawing = false;
+
+    function getPosition(e) {
+        if (e.touches && e.touches.length > 0) {
+            return {
+                x: e.touches[0].clientX - canvas.getBoundingClientRect().left,
+                y: e.touches[0].clientY - canvas.getBoundingClientRect().top
+            };
+        } else {
+            return {
+                x: e.clientX - canvas.getBoundingClientRect().left,
+                y: e.clientY - canvas.getBoundingClientRect().top
+            };
+        }
+    }
+
+    function startDrawing(e) {
+        e.preventDefault();
+        drawing = true;
+        const pos = getPosition(e);
+        ctx.beginPath();
+        ctx.moveTo(pos.x, pos.y);
+    }
+
+    function draw(e) {
+        if (!drawing) return;
+        e.preventDefault();
+        const pos = getPosition(e);
+        ctx.lineTo(pos.x, pos.y);
+        ctx.stroke();
+    }
+
+    function stopDrawing(e) {
+        e.preventDefault();
+        drawing = false;
+        document.getElementById('firma-base64').value = canvas.toDataURL();
+    }
+
+    function clearCanvas() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        document.getElementById('firma-base64').value = '';
+    }
+
+    // Eventos para mouse
+    canvas.addEventListener('mousedown', startDrawing);
+    canvas.addEventListener('mousemove', draw);
+    canvas.addEventListener('mouseup', stopDrawing);
+    canvas.addEventListener('mouseout', stopDrawing);
+
+    // Eventos para touch
+    canvas.addEventListener('touchstart', startDrawing);
+    canvas.addEventListener('touchmove', draw);
+    canvas.addEventListener('touchend', stopDrawing);
+
+    function guardarFirma() {
+        const dataURL = canvas.toDataURL(); // firma como imagen base64
+        document.getElementById('firma-base64').value = dataURL;
+        document.getElementById('firma-form').submit(); // enviar el formulario
+    }
+
+  
+</script>
+
+
+{% endblock %}
+
+
+
+
+
+
+
+
+
